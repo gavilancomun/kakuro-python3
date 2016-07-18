@@ -47,6 +47,18 @@ class TestStringMethods(unittest.TestCase):
     print(result)
     self.assertEqual(9, len(result))
 
+  def test_drop(self):
+    a = [1, 2, 3, 4, 5, 6]
+    result = a[4:]
+    print(result)
+    self.assertEqual(2, len(result))
+
+  def test_take(self):
+    a = [1, 2, 3, 4, 5, 6]
+    result = a[:4]
+    print(result)
+    self.assertEqual(4, len(result))
+
 if __name__ == '__main__':
     unittest.main()
 
