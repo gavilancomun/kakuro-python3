@@ -71,6 +71,17 @@ class TestStringMethods(unittest.TestCase):
     print(result)
     self.assertEqual(5, len(result))
 
+  def test_last(self):
+    data = [1, 2, 3, 4]
+    self.assertEqual(4, last(data))
+
+  def test_isposs(self):
+    vc = v(1, 2, 3)
+    result = isPossible(vc, 2)
+    self.assertTrue(result)
+    result = isPossible(vc, 4)
+    self.assertFalse(result)
+
 if __name__ == '__main__':
     unittest.main()
 

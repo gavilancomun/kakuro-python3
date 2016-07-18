@@ -109,3 +109,9 @@ def partitionAll(n, step, coll):
 def partitionN (n, coll):
   return partitionAll(n, n, coll)
 
+def last(coll):
+  return coll[len(coll) - 1]
+
+def isPossible(v, n):
+  return any(map(lambda item: item == n, v.values))
+
