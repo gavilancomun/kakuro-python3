@@ -5,12 +5,18 @@ class EmptyCell:
   def draw(self):
     return "   -----  "
 
+  def __eq__(self, other):
+    return isinstance(other, self.__class__)
+
 class DownCell:
   def __init__(self, down):
     self.down = down
 
   def draw(self):
     return "   {0:2d}\\--  ".format(self.down)
+
+  def __eq__(self, other):
+    return (isinstance(other, self.__class__) and (self.down == other.down))
 
 class AcrossCell:
   def __init__(self, across):
@@ -19,6 +25,9 @@ class AcrossCell:
   def draw(self):
     return "   --\\{0:2d}  ".format(self.across)
 
+  def __eq__(self, other):
+    return (isinstance(other, self.__class__) and (self.across == other.across))
+
 class DownAcrossCell:
   def __init__(self, down, across):
     self.down = down
@@ -26,6 +35,9 @@ class DownAcrossCell:
 
   def draw(self):
     return "   {0:2d}\\{1:2d}  ".format(self.down, self.across)
+
+  def __eq__(self, other):
+    return (isinstance(other, self.__class__) and (self.across == other.across) and (self.down == other.down))
 
 class ValueCell:
   def __init__(self, values):
@@ -39,6 +51,9 @@ class ValueCell:
       return "     {0}    ".format(list(self.values)[0])
     else:
       return " " + "".join(map(lambda x: self.draw_value(x), [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+
+  def __eq__(self, other):
+    return (isinstance(other, self.__class__) and (self.values == other.values))
 
 def e():
   return EmptyCell()
@@ -114,4 +129,13 @@ def last(coll):
 
 def isPossible(v, n):
   return any(map(lambda item: item == n, v.values))
+
+def solveStep(cells, total):
+  finalIndex = len(cells) - 1
+  perms = permuteAll(cells, total)
+  perms2 = list(filter(lambda v: isPossible(last(cells), v[finalIndex]), perms))
+  perms3 = list(filter(lambda v: allDifferent(v), perms2))
+  perms4 = transpose(perms3)
+  return list(map(lambda coll: v(*coll), perms4))
+
 

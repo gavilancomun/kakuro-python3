@@ -82,6 +82,13 @@ class TestStringMethods(unittest.TestCase):
     result = isPossible(vc, 4)
     self.assertFalse(result)
 
+  def test_solvestep(self):
+    result = solveStep([v(1, 2), v()], 5)
+    print("solve step result ")
+    print(result)
+    self.assertEqual(v(1, 2), result[0])
+    self.assertEqual(v(3, 4), result[1])
+
 if __name__ == '__main__':
     unittest.main()
 
