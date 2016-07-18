@@ -69,6 +69,9 @@ def conj(coll, item):
 def allDifferent(coll):
   return len(coll) == len(set(coll))
 
+def concatLists(coll1, coll2):
+  return list(chain.from_iterable([coll1, coll2]))
+
 def permute(vs, target, soFar):
   if target >= 1:
     if len(soFar) == (len(vs) - 1):

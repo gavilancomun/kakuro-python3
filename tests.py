@@ -40,6 +40,12 @@ class TestStringMethods(unittest.TestCase):
     print(result)
     self.assertEqual(4, len(result))
 
+  def test_concat(self):
+    a = [1, 2, 3]
+    b = [4, 5, 6, 1, 2, 3]
+    result = concatLists(a, b)
+    print(result)
+    self.assertEqual(9, len(result))
 
 if __name__ == '__main__':
     unittest.main()
