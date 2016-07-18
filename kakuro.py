@@ -82,3 +82,9 @@ def permute(vs, target, soFar):
 def permuteAll(vs, target):
   return permute(vs, target, [])
 
+def transpose(m):
+  if 0 == len(m):
+    return []
+  else:
+    return list(map(lambda i: list(map(lambda col: col[i], m)), range(0, len(m[0]))))
+

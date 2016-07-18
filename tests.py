@@ -25,6 +25,14 @@ class TestStringMethods(unittest.TestCase):
     diff = list(filter((lambda p: allDifferent(p)), results))
     self.assertEqual(6, len(diff))
 
+  def test_transpose(self):
+    ints = [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
+    tr = transpose(ints)
+    print(ints)
+    print(tr)
+    self.assertEqual(len(ints), len(tr[0]))
+    self.assertEqual(len(ints[0]), len(tr))
+
 
 if __name__ == '__main__':
     unittest.main()
