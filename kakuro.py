@@ -138,4 +138,11 @@ def solveStep(cells, total):
   perms4 = transpose(perms3)
   return list(map(lambda coll: v(*coll), perms4))
 
+# returns (non-vals, vals)*
+def gatherValues(line):
+  return partitionBy(lambda v: isinstance(v, ValueCell), line)
+
+def pairTargetsWithValues(line):
+  return partitionN(2, gatherValues(line))
+
 

@@ -89,6 +89,28 @@ class TestStringMethods(unittest.TestCase):
     self.assertEqual(v(1, 2), result[0])
     self.assertEqual(v(3, 4), result[1])
 
+  def test_gather(self):
+    line = [da(3, 4), v(), v(), d(4), e(), a(4), v(), v()]
+    result = gatherValues(line)
+    print("gather ")
+    print(result)
+    self.assertEqual(4, len(result))
+    self.assertEqual(da(3, 4), result[0][0])
+    self.assertEqual(d(4), result[2][0])
+    self.assertEqual(e(), result[2][1])
+    self.assertEqual(a(4), result[2][2])
+
+  def test_pairtargets(self):
+    line = [da(3, 4), v(), v(), d(4), e(), a(4), v(), v()]
+    result = pairTargetsWithValues(line)
+    print("pair ")
+    print(result)
+    self.assertEqual(2, len(result))
+    self.assertEqual(da(3, 4), result[0][0][0])
+    self.assertEqual(d(4), result[1][0][0])
+    self.assertEqual(e(), result[1][0][1])
+    self.assertEqual(a(4), result[1][0][2])
+
 if __name__ == '__main__':
     unittest.main()
 
