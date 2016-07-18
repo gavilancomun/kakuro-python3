@@ -1,4 +1,6 @@
 import unittest
+
+from itertools import *
 from kakuro import *
 
 class TestStringMethods(unittest.TestCase):
@@ -32,6 +34,11 @@ class TestStringMethods(unittest.TestCase):
     print(tr)
     self.assertEqual(len(ints), len(tr[0]))
     self.assertEqual(len(ints[0]), len(tr))
+
+  def test_takewhile(self):
+    result = list(takewhile(lambda n: n < 4, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
+    print(result)
+    self.assertEqual(4, len(result))
 
 
 if __name__ == '__main__':

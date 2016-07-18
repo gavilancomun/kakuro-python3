@@ -1,5 +1,5 @@
 # Kakuro solver
-import itertools
+from itertools import *
 
 class EmptyCell:
   def draw(self):
@@ -38,7 +38,7 @@ class ValueCell:
     if 1 == len(self.values):
       return "     {0}    ".format(list(self.values)[0])
     else:
-      return " " + "".join(map((lambda x: self.draw_value(x)), [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+      return " " + "".join(map(lambda x: self.draw_value(x), [1, 2, 3, 4, 5, 6, 7, 8, 9]))
 
 def e():
   return EmptyCell()
@@ -59,7 +59,7 @@ def v(*args):
     return ValueCell(args)
 
 def drawRow(row):
-  return "".join(map((lambda v: v.draw()), row)) + "\n"
+  return "".join(map(lambda v: v.draw(), row)) + "\n"
 
 def conj(coll, item):
   result = coll.copy()
@@ -75,7 +75,7 @@ def permute(vs, target, soFar):
       return [conj(soFar, target)]
     else:
       arrays = map(lambda n: permute(vs, (target - n), conj(soFar, n)), vs[len(soFar)].values)
-      return list(itertools.chain.from_iterable(arrays))
+      return list(chain.from_iterable(arrays))
   else:
     return []
 
