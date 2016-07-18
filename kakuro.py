@@ -1,4 +1,5 @@
 # Kakuro solver
+import itertools
 
 class EmptyCell:
   def draw(self):
@@ -59,3 +60,25 @@ def v(*args):
 
 def drawRow(row):
   return "".join(map((lambda v: v.draw()), row)) + "\n"
+
+def conj(coll, item):
+  result = coll.copy()
+  result.append(item)
+  return result
+
+def allDifferent(coll):
+  return len(coll) == len(set(coll))
+
+def permute(vs, target, soFar):
+  if target >= 1:
+    if len(soFar) == (len(vs) - 1):
+      return [conj(soFar, target)]
+    else:
+      arrays = map(lambda n: permute(vs, (target - n), conj(soFar, n)), vs[len(soFar)].values)
+      return list(itertools.chain.from_iterable(arrays))
+  else:
+    return []
+
+def permuteAll(vs, target):
+  return permute(vs, target, [])
+
