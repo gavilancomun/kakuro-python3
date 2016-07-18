@@ -91,3 +91,21 @@ def transpose(m):
   else:
     return list(map(lambda i: list(map(lambda col: col[i], m)), range(0, len(m[0]))))
 
+def partitionBy(f, coll):
+  if 0 == len(coll):
+    return []
+  else:
+    head = coll[0]
+    fx = f(head)
+    group = list(takewhile(lambda y: fx == f(y), coll))
+    return concatLists([group], partitionBy(f, coll[len(group):]))
+
+def partitionAll(n, step, coll):
+  if 0 == len(coll):
+    return []
+  else:
+    return concatLists([coll[:n]], partitionAll(n, step, coll[step:]))
+
+def partitionN (n, coll):
+  return partitionAll(n, n, coll)
+

@@ -59,6 +59,18 @@ class TestStringMethods(unittest.TestCase):
     print(result)
     self.assertEqual(4, len(result))
 
+  def test_partby(self):
+    data = [1, 2, 2, 2, 3, 4, 5, 5, 6, 7, 7, 8, 9]
+    result = partitionBy(lambda n: 0 == (n % 2), data)
+    print(result)
+    self.assertEqual(9, len(result))
+
+  def test_partall(self):
+    data = [1, 2, 2, 2, 3, 4, 5, 5, 6, 7, 7, 8, 9]
+    result = partitionAll(5, 3, data)
+    print(result)
+    self.assertEqual(5, len(result))
+
 if __name__ == '__main__':
     unittest.main()
 
