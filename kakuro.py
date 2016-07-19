@@ -76,6 +76,9 @@ def v(*args):
 def drawRow(row):
   return "".join(map(lambda v: v.draw(), row)) + "\n"
 
+def drawGrid(grid):
+  return "".join(map(lambda row: drawRow(row), grid)) + "\n"
+
 def conj(coll, item):
   result = coll.copy()
   result.append(item)
@@ -150,7 +153,7 @@ def pairTargetsWithValues(line):
 
 def solvePair(f, pair):
   notValueCells = pair[0]
-  if (pair[1] is None) or (0 == len(pair[1])):
+  if 1 == len(pair):
     return notValueCells
   else:
     valueCells = pair[1]
@@ -167,4 +170,17 @@ def solveRow(row):
 
 def solveColumn(column):
   return solveLine(column, lambda v: solvePair(lambda x: x.down, v))
+
+def solveGrid(grid):
+  rowsDone = list(map(lambda r: solveRow(r), grid))
+  colsDone = list(map(lambda col: solveColumn(col), transpose(rowsDone)))
+  return transpose(colsDone)
+
+def solver(grid):
+  print(drawGrid(grid))
+  g = solveGrid(grid)
+  if g == grid:
+    return g
+  else:
+    return solver(g)
 
