@@ -111,6 +111,17 @@ class TestStringMethods(unittest.TestCase):
     self.assertEqual(e(), result[1][0][1])
     self.assertEqual(a(4), result[1][0][2])
 
+  def test_solvepair(self):
+    line = [da(3, 4), v(), v(), d(4), e(), a(4), v(), v()]
+    pairs = pairTargetsWithValues(line)
+    pair = pairs[0]
+    result = solvePair(lambda cell: cell.down, pair)
+    print("solvePair ")
+    print(result)
+    self.assertEqual(3, len(result))
+    self.assertEqual(v(1, 2), result[1])
+    self.assertEqual(v(1, 2), result[2])
+
 if __name__ == '__main__':
     unittest.main()
 

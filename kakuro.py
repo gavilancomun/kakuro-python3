@@ -41,7 +41,7 @@ class DownAcrossCell:
 
 class ValueCell:
   def __init__(self, values):
-    self.values = set(values)
+    self.values = frozenset(values)
 
   def draw_value(self, value):
     return str(value) if value in self.values else "."
@@ -82,7 +82,7 @@ def conj(coll, item):
   return result
 
 def allDifferent(coll):
-  return len(coll) == len(set(coll))
+  return len(coll) == len(frozenset(coll))
 
 def concatLists(coll1, coll2):
   return list(chain.from_iterable([coll1, coll2]))
@@ -145,4 +145,12 @@ def gatherValues(line):
 def pairTargetsWithValues(line):
   return partitionN(2, gatherValues(line))
 
+def solvePair(f, pair):
+  notValueCells = pair[0]
+  if (pair[1] is None) or (0 == len(pair[1])):
+    return notValueCells
+  else:
+    valueCells = pair[1]
+    newValueCells = solveStep(valueCells, f(last(notValueCells)))
+    return concatLists(notValueCells, newValueCells)
 
