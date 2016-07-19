@@ -133,6 +133,20 @@ class TestStringMethods(unittest.TestCase):
     self.assertEqual(v(1, 2, 3, 4), result[6])
     self.assertEqual(v(1, 2, 3, 4), result[7])
 
+  def test_row(self):
+    result = solveRow([a(3), v(1, 2, 3), v(1)])
+    print("solve row ")
+    print(result)
+    self.assertEqual(v(2), result[1])
+    self.assertEqual(v(1), result[2])
+
+  def test_col(self):
+    result = solveColumn([da(3, 12), v(1, 2, 3), v(1)])
+    print("solve col ")
+    print(result)
+    self.assertEqual(v(2), result[1])
+    self.assertEqual(v(1), result[2])
+
 if __name__ == '__main__':
     unittest.main()
 

@@ -162,3 +162,9 @@ def solveLine(line, pairSolver):
   result2 = map(lambda pair: pairSolver(pair), result1)
   return flatten(result2)
 
+def solveRow(row):
+  return solveLine(row, lambda v: solvePair(lambda x: x.across, v))
+
+def solveColumn(column):
+  return solveLine(column, lambda v: solvePair(lambda x: x.down, v))
+
