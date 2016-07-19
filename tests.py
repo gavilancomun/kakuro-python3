@@ -122,6 +122,17 @@ class TestStringMethods(unittest.TestCase):
     self.assertEqual(v(1, 2), result[1])
     self.assertEqual(v(1, 2), result[2])
 
+  def test_solveline(self):
+    line = [da(3, 4), v(), v(), d(4), e(), a(5), v(), v()]
+    result = solveLine(line, lambda v: solvePair(lambda x: x.across, v))
+    print("solve line ")
+    print(result)
+    self.assertEqual(8, len(result))
+    self.assertEqual(v(1, 3), result[1])
+    self.assertEqual(v(1, 3), result[2])
+    self.assertEqual(v(1, 2, 3, 4), result[6])
+    self.assertEqual(v(1, 2, 3, 4), result[7])
+
 if __name__ == '__main__':
     unittest.main()
 

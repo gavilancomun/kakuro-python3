@@ -84,8 +84,11 @@ def conj(coll, item):
 def allDifferent(coll):
   return len(coll) == len(frozenset(coll))
 
+def flatten(coll):
+  return list(chain.from_iterable(coll))
+
 def concatLists(coll1, coll2):
-  return list(chain.from_iterable([coll1, coll2]))
+  return flatten([coll1, coll2])
 
 def permute(vs, target, soFar):
   if target >= 1:
@@ -93,7 +96,7 @@ def permute(vs, target, soFar):
       return [conj(soFar, target)]
     else:
       arrays = map(lambda n: permute(vs, (target - n), conj(soFar, n)), vs[len(soFar)].values)
-      return list(chain.from_iterable(arrays))
+      return flatten(arrays)
   else:
     return []
 
@@ -153,4 +156,9 @@ def solvePair(f, pair):
     valueCells = pair[1]
     newValueCells = solveStep(valueCells, f(last(notValueCells)))
     return concatLists(notValueCells, newValueCells)
+
+def solveLine(line, pairSolver):
+  result1 = pairTargetsWithValues(line)
+  result2 = map(lambda pair: pairSolver(pair), result1)
+  return flatten(result2)
 
