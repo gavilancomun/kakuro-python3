@@ -160,16 +160,16 @@ def solvePair(f, pair):
     newValueCells = solveStep(valueCells, f(last(notValueCells)))
     return concatLists(notValueCells, newValueCells)
 
-def solveLine(line, pairSolver):
+def solveLine(line, f):
   result1 = pairTargetsWithValues(line)
-  result2 = map(lambda pair: pairSolver(pair), result1)
+  result2 = map(lambda pair: solvePair(f, pair), result1)
   return flatten(result2)
 
 def solveRow(row):
-  return solveLine(row, lambda v: solvePair(lambda x: x.across, v))
+  return solveLine(row, lambda x: x.across)
 
 def solveColumn(column):
-  return solveLine(column, lambda v: solvePair(lambda x: x.down, v))
+  return solveLine(column, lambda x: x.down)
 
 def solveGrid(grid):
   rowsDone = list(map(lambda r: solveRow(r), grid))

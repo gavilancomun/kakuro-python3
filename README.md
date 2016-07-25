@@ -1,4 +1,6 @@
 # kakuro-python3
-Kakuro solver
+Kakuro solver in python 3.
 
 ## Test
+python tests.py
+

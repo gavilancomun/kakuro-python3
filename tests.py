@@ -117,7 +117,7 @@ class TestStringMethods(unittest.TestCase):
 
   def test_solveline(self):
     line = [da(3, 4), v(), v(), d(4), e(), a(5), v(), v()]
-    result = solveLine(line, lambda v: solvePair(lambda x: x.across, v))
+    result = solveLine(line, lambda x: x.across)
     print("solve line ")
     print(result)
     self.assertEqual(8, len(result))
